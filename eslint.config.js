@@ -51,7 +51,8 @@ export default ts_eslint.config(
       'simple-import-sort': simpleImportSort
     },
     rules: {
-      '@typescript-eslint/triple-slash-reference': 'off'
+      '@typescript-eslint/triple-slash-reference': 'off',
+      '@typescript-eslint/no-magic-numbers': 'off'
     }
   }
 )
