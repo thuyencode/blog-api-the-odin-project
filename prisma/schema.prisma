@@ -13,11 +13,17 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+enum Role {
+  READER
+  AUTHOR
+}
+
 model User {
   id           String   @id @default(uuid())
   username     String   @unique
-  name         String
+  role         Role     @default(READER)
   created_date DateTime @default(now())
   updated_date DateTime @updatedAt
   salted_hash  String
+  v_           Int      @default(1)
 }

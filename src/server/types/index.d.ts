@@ -6,7 +6,9 @@ declare module 'bun' {
 }
 
 declare module 'jsonwebtoken' {
-  export interface JwtPayload extends Omit<IUSer, 'salted_hash'> {}
+  export interface JwtPayload extends Omit<IUSer, 'salted_hash'> {
+    type: 'access' | 'refresh'
+  }
 }
 
 declare global {
