@@ -15,7 +15,6 @@ export const errorHandler: ErrorRequestHandler = (
   }
 
   if (err instanceof v.ValiError) {
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument -- This is fine
     const { nested: issues } = v.flatten(err.issues)
 
     next(new BadRequest(issues))

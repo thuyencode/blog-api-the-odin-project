@@ -1,13 +1,11 @@
+import { jwtAuthenticator } from '@/server/middlewares/jwt-authenticator'
 import { HttpStatusCode } from 'axios'
 import e from 'express'
-import passport from 'passport'
 
 const statusRoutes = e.Router()
 
-statusRoutes.get(
-  '/',
-  passport.authenticate('jwt', { session: false }),
-  (req, res) => res.status(HttpStatusCode.Ok)
+statusRoutes.get('/', jwtAuthenticator, (req, res) =>
+  res.status(HttpStatusCode.Ok).send(req.user)
 )
 
 export default statusRoutes
