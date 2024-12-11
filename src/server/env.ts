@@ -1,4 +1,5 @@
 import v from '@/shared/validation'
+import { PasswordSchema, UsernameSchema } from '@/shared/validation/auth.schema'
 
 const NonEmptySchema = v.pipe(v.string(), v.nonEmpty())
 
@@ -12,6 +13,8 @@ const SecretKeySchema = v.pipe(NonEmptySchema, v.minLength(15))
 
 const EnvSchema = v.object({
   PORT: PortSchema,
+  AUTHOR_USERNAME: UsernameSchema,
+  AUTHOR_PASSWORD: PasswordSchema,
   COOKIE_SECRET_KEY: SecretKeySchema,
   JWT_SECRET_KEY: SecretKeySchema,
   PGHOST: v.pipe(NonEmptySchema, v.minLength(9)),

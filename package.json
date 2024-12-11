@@ -13,7 +13,9 @@
     "prisma:generate:watch": "prisma generate --watch",
     "lint": "bun --bunx eslint .",
     "lint:fix": "bun:lint --fix",
-    "format": "bun --bunx prettier . --write"
+    "format": "bun --bunx prettier . --write",
+    "seed:dev": "bun --env-file=.env.development.local scripts/seed.ts",
+    "seed:prod": "bun --env-file=.env.production.local scripts/seed.ts"
   },
   "dependencies": {
     "@hikyu/log": "npm:@jsr/hikyu__log",
