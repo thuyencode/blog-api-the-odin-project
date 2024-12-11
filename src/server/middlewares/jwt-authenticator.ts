@@ -23,6 +23,10 @@ export const jwtAuthenticator: e.RequestHandler = (req, res, next) => {
         return
       }
 
+      if (user) {
+        req.user = user
+      }
+
       next()
     }
   )(req, res, next)

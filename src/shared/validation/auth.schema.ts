@@ -1,12 +1,5 @@
 import v from '.'
 
-export const NameSchema = v.pipe(
-  v.string(),
-  v.trim(),
-  v.minLength(2, 'Name must be at least 2 characters'),
-  v.maxLength(100, 'Name must not exceed 100 characters')
-)
-
 export const UsernameSchema = v.pipe(
   v.string(),
   v.trim(),
@@ -25,10 +18,7 @@ export const PasswordSchema = v.pipe(
   v.regex(/[0-9]/, 'Password must contain a number')
 )
 
-export const SignUpSchema = v.object({
-  name: NameSchema,
+export const AuthCredentialSchema = v.object({
   username: UsernameSchema,
   password: PasswordSchema
 })
-
-export const SignInSchema = v.omit(SignUpSchema, ['name'])

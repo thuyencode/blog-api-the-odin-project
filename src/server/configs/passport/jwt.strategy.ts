@@ -1,5 +1,7 @@
+import UserDB from '@/server/db/User.db'
 import { safeEnv } from '@/server/env'
 import { BadRequest, Unauthorized } from '@/server/errors'
+import { getUserNotFoundMessage } from '@/server/utils'
 import type { JwtPayload } from 'jsonwebtoken'
 import passport from 'passport'
 import { ExtractJwt, Strategy as JwtStrategy } from 'passport-jwt'
@@ -18,15 +20,30 @@ export default passport.use(
           ),
           false
         )
-        return
       }
 
-      if (payload.username === 'thuyencode') {
-        done(null, true)
-        return
-      }
+      UserDB.findByUsername(payload.username)
+        .then((user) => {
+          if (user === null) {
+            done(
+              new BadRequest(getUserNotFoundMessage(payload.username)),
+              false
+            )
+            return
+          }
 
-      done(new Unauthorized(`Username '${payload.username}' not found`), false)
+          if (payload.v_ !== user.v_) {
+            done(new Unauthorized('Outdated token'), false)
+            return
+          }
+
+          const { salted_hash, ...userInfo } = user
+
+          done(null, userInfo)
+        })
+        .catch((error: unknown) => {
+          done(error, false)
+        })
     }
   )
 )
