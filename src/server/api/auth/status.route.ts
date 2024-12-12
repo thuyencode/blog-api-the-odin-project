@@ -1,10 +1,10 @@
-import { jwtAuthenticator } from '@/server/middlewares/jwt-authenticator'
+import { accessTokenAuthenticator } from '@/server/middlewares'
 import { HttpStatusCode } from 'axios'
 import e from 'express'
 
 const statusRoutes = e.Router()
 
-statusRoutes.get('/', jwtAuthenticator, (req, res) =>
+statusRoutes.get('/', accessTokenAuthenticator, (req, res) =>
   res.status(HttpStatusCode.Ok).send(req.user)
 )
 

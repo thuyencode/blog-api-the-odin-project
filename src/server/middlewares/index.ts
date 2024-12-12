@@ -1,3 +1,5 @@
+export * from './access-token-authenticator'
 export * from './error-handler'
 export * from './error-responser'
 export * from './internal-server-error-logger'
+export * from './validators'

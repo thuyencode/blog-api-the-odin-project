@@ -10,7 +10,6 @@ import eslintConfigPrettier from 'eslint-config-prettier'
 import jsxA11y from 'eslint-plugin-jsx-a11y'
 import reactRefresh from 'eslint-plugin-react-refresh'
 import simpleImportSort from 'eslint-plugin-simple-import-sort'
-import globals from 'globals'
 import ts_eslint from 'typescript-eslint'
 
 export default ts_eslint.config(
@@ -23,15 +22,6 @@ export default ts_eslint.config(
       ...pluginRouter.configs['flat/recommended'],
       eslintConfigPrettier,
       {
-        languageOptions: {
-          parserOptions: {
-            parser: tsParser,
-            project: './tsconfig.json',
-            tsconfigRootDir: import.meta.dirname
-          }
-        }
-      },
-      {
         ...love,
         files: ['**/*.js', '**/*.ts']
       },
@@ -42,8 +32,11 @@ export default ts_eslint.config(
     ],
     files: ['**/*.{ts,tsx}'],
     languageOptions: {
-      ecmaVersion: 2023,
-      globals: globals.browser
+      parserOptions: {
+        parser: tsParser,
+        project: './tsconfig.json',
+        tsconfigRootDir: import.meta.dirname
+      }
     },
     plugins: {
       'react-refresh': reactRefresh,

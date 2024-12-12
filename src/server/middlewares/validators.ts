@@ -3,7 +3,7 @@ import type e from 'express'
 import v from '../../shared/validation'
 import type { NullableKeys } from '../types/helpers'
 
-export const validateReqBody =
+export const reqBodyValidator =
   <T>(
     schema: v.BaseSchema<unknown, unknown, any>
   ): e.RequestHandler<unknown, unknown, NullableKeys<T>, unknown> =>
@@ -16,7 +16,7 @@ export const validateReqBody =
     }
   }
 
-export const validateReqQuery =
+export const reqQueryValidator =
   <T>(
     schema: v.BaseSchema<unknown, unknown, any>
   ): e.RequestHandler<unknown, unknown, unknown, NullableKeys<T>> =>

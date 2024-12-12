@@ -1,7 +1,7 @@
 import UserDB from '@/server/db/User.db'
 import { BadRequest } from '@/server/errors'
 import { SECURED_COOKIE_OPTS } from '@/server/libs/constants'
-import { validateReqBody } from '@/server/middlewares/validation'
+import { reqBodyValidator } from '@/server/middlewares'
 import { getUserNotFoundMessage } from '@/server/utils'
 import { issueAccessToken, issueRefreshToken } from '@/server/utils/jwt'
 import { verifyPassword } from '@/server/utils/password'
@@ -15,7 +15,7 @@ const loginRoutes = e.Router()
 
 loginRoutes.post(
   '/',
-  validateReqBody<AuthCredentialInput>(AuthCredentialSchema),
+  reqBodyValidator<AuthCredentialInput>(AuthCredentialSchema),
   expressAsyncHandler<unknown, unknown, AuthCredentialInput>(
     async (req, res) => {
       const {

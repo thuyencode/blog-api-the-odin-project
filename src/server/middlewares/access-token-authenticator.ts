@@ -4,7 +4,7 @@ import type jwt from 'jsonwebtoken'
 import passport from 'passport'
 import { Unauthorized } from '../errors'
 
-export const jwtAuthenticator: e.RequestHandler = (req, res, next) => {
+export const accessTokenAuthenticator: e.RequestHandler = (req, res, next) => {
   passport.authenticate(
     'jwt',
     { session: false },
