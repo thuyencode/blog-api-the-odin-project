@@ -10,9 +10,15 @@ const updateByUsername = async (
 ): Promise<User | null> =>
   await prisma.user.update({ where: { username }, data })
 
+type InsertNewUserProps = Pick<User, 'username' | 'salted_hash'>
+
+const insert = async (data: InsertNewUserProps): Promise<User> =>
+  await prisma.user.create({ data })
+
 const UserDB = {
   findByUsername,
-  updateByUsername
+  updateByUsername,
+  insert
 }
 
 export default UserDB

@@ -6,7 +6,7 @@ import type { NullableKeys } from '../types/helpers'
 export const reqBodyValidator =
   <T>(
     schema: v.BaseSchema<unknown, unknown, any>
-  ): e.RequestHandler<unknown, unknown, NullableKeys<T>, unknown> =>
+  ): e.RequestHandler<unknown, unknown, NullableKeys<T>> =>
   (req, _res, next) => {
     try {
       v.parse(schema, req.body)
