@@ -1,6 +1,7 @@
 import UserDB from '@/server/db/User.db'
 import { safeEnv } from '@/server/env'
 import { BadRequest, Unauthorized } from '@/server/errors'
+import { MESSAGES } from '@/server/libs/constants'
 import { getUserNotFoundMessage } from '@/server/utils'
 import type { JwtPayload } from 'jsonwebtoken'
 import passport from 'passport'
@@ -16,7 +17,7 @@ export default passport.use(
       if (payload.type === 'refresh') {
         done(
           new BadRequest(
-            `Refresh token is only used for issuing new access tokens`
+            'Refresh token is only used for issuing new access tokens'
           ),
           false
         )
@@ -33,7 +34,7 @@ export default passport.use(
           }
 
           if (payload.v_ !== user.v_) {
-            done(new Unauthorized('Outdated token'), false)
+            done(new Unauthorized(MESSAGES.OUTDATED_TOKEN), false)
             return
           }
 

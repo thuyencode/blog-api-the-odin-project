@@ -1,3 +1,6 @@
+/* eslint-disable @typescript-eslint/no-unsafe-type-assertion -- This is fine */
+/* eslint-disable @typescript-eslint/no-unnecessary-type-parameters -- This is fine */
+
 import jwt from 'jsonwebtoken'
 import { safeEnv } from '../env'
 
@@ -13,3 +16,11 @@ export const issueAccessToken = (payload: Payload): string =>
 
 export const issueRefreshToken = (payload: Payload): string =>
   issueJwtToken({ ...payload, type: 'refresh' }, { expiresIn: '30 days' })
+
+export const verifyJwtToken = <T>(token: string): T | null => {
+  try {
+    return jwt.verify(token, safeEnv.JWT_SECRET_KEY) as T
+  } catch {
+    return null
+  }
+}

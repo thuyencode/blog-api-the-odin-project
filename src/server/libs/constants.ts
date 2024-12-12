@@ -10,5 +10,6 @@ export const COOKIE_NAMES = {
 }
 
 export const MESSAGES = {
-  LOGGED_OUT: 'Logged out successfully'
+  LOGGED_OUT: 'Logged out successfully',
+  OUTDATED_TOKEN: 'Outdated token'
 }

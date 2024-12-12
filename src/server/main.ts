@@ -23,7 +23,7 @@ app.use(
   })
 )
 
-app.use(cookieParser(safeEnv.COOKIE_SECRET_KEY, {}))
+app.use(cookieParser(safeEnv.COOKIE_SECRET_KEY))
 
 app.use(e.json())
 app.use(e.urlencoded({ extended: true }))

@@ -48,7 +48,8 @@ export default ts_eslint.config(
       '@typescript-eslint/no-magic-numbers': 'off',
       '@typescript-eslint/no-unsafe-argument': 'off',
       '@typescript-eslint/strict-boolean-expressions': 'off',
-      '@typescript-eslint/naming-convention': 'off'
+      '@typescript-eslint/naming-convention': 'off',
+      '@typescript-eslint/no-unsafe-member-access': 'off'
     }
   }
 )
