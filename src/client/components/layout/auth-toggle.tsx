@@ -1,9 +1,9 @@
-import { useCloseDialogElement } from '@/client/hooks'
+import { useCloseDetailsElement } from '@/client/hooks'
 import { Icon } from '@iconify/react'
 import type { ReactElement } from 'react'
 
 const AuthToggle = (): ReactElement => {
-  const ref = useCloseDialogElement()
+  const ref = useCloseDetailsElement()
 
   return (
     <details className='dropdown dropdown-end' ref={ref}>

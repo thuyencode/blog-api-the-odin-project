@@ -6,7 +6,7 @@ import {
   type MutableRefObject
 } from 'react'
 
-export const useCloseDialogElement =
+export const useCloseDetailsElement =
   (): MutableRefObject<ElementRef<'details'> | null> => {
     const ref = useRef<ElementRef<'details'> | null>(null)
 

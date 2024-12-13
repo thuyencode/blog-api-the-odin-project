@@ -1,4 +1,4 @@
-import { useCloseDialogElement } from '@/client/hooks'
+import { useCloseDetailsElement } from '@/client/hooks'
 import { Icon } from '@iconify/react'
 import { useEffect, useState, type FunctionComponent } from 'react'
 import { themeChange } from 'theme-change'
@@ -10,7 +10,7 @@ const TOGGLE_STATES = {
 }
 
 const ThemeToggle: FunctionComponent = () => {
-  const ref = useCloseDialogElement()
+  const ref = useCloseDetailsElement()
   const [toggleState, setToggleState] = useState(() => {
     // eslint-disable-next-line @typescript-eslint/no-unsafe-type-assertion -- This is fine
     const theme = localStorage.getItem('theme') as 'light' | 'dark' | ''
