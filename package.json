@@ -20,6 +20,8 @@
   "dependencies": {
     "@hikyu/log": "npm:@jsr/hikyu__log",
     "@prisma/client": "^6.0.1",
+    "@tanstack/react-query": "^5.62.7",
+    "@tanstack/react-router": "^1.88.0",
     "@valibot/valibot": "npm:@jsr/valibot__valibot@0.42.1",
     "axios": "^1.7.9",
     "compression": "^1.7.5",
@@ -42,6 +44,9 @@
     "@eslint/js": "^9.16.0",
     "@tanstack/eslint-plugin-query": "^5.62.1",
     "@tanstack/eslint-plugin-router": "^1.87.3",
+    "@tanstack/react-query-devtools": "^5.62.7",
+    "@tanstack/router-devtools": "^1.88.0",
+    "@tanstack/router-plugin": "^1.87.13",
     "@types/bun": "^1.1.14",
     "@types/compression": "^1.7.5",
     "@types/cookie-parser": "^1.4.8",
