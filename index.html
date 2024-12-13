@@ -11,11 +11,20 @@
       rel="stylesheet"
     />
 
-    <title>Vite + React + TS</title>
+    <title>Blog API | Thuyen Code | The Odin Project</title>
   </head>
-  <body>
-    <div id="root" class="flex min-h-dvh flex-col"></div>
+  <body class="drawer">
+    <div id="root" class="drawer-content flex min-h-dvh flex-col"></div>
 
+    <input id="sidebar-toggle" type="checkbox" class="drawer-toggle" />
+
+    <div id="sidebar" class="drawer-side">
+      <label
+        for="sidebar-toggle"
+        aria-label="close sidebar"
+        class="drawer-overlay"
+      ></label>
+    </div>
     <script type="module" src="/src/client/main.tsx"></script>
   </body>
 </html>
