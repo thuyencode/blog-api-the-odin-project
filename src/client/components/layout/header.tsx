@@ -1,6 +1,7 @@
 import { Icon } from '@iconify/react'
+import { Link } from '@tanstack/react-router'
 import type { ReactElement } from 'react'
-import AuthToggle from './auth-toggle'
+import AuthMenu from './auth-menu'
 import Search from './search'
 import ThemeToggle from './theme-toggle'
 
@@ -22,7 +23,9 @@ const Header = (): ReactElement => (
     </div>
 
     <div className='navbar-center gap-1'>
-      <h3>Thuyen Blog</h3>
+      <Link to='/'>
+        <h3>Thuyen Blog</h3>
+      </Link>
     </div>
 
     <div className='navbar-end'>
@@ -32,7 +35,7 @@ const Header = (): ReactElement => (
         </li>
 
         <li>
-          <AuthToggle />
+          <AuthMenu />
         </li>
       </ul>
     </div>
