@@ -1,19 +1,27 @@
 import { useDetailsElementInteraction } from '@/client/hooks'
 import { Icon } from '@iconify/react'
 import { Link } from '@tanstack/react-router'
-import type { ReactElement } from 'react'
+import type { ComponentProps, FunctionComponent } from 'react'
 
-const AuthMenu = (): ReactElement => {
+interface AuthMenuProps {
+  detailsProps?: Omit<ComponentProps<'details'>, 'ref'>
+  ulProps?: ComponentProps<'ul'>
+}
+
+const AuthMenu: FunctionComponent<AuthMenuProps> = ({
+  detailsProps,
+  ulProps
+}) => {
   const ref = useDetailsElementInteraction()
 
   return (
-    <details className='dropdown dropdown-end' ref={ref}>
+    <details {...detailsProps} ref={ref}>
       <summary>
         <Icon className='text-xl' icon='mdi:user' />
         Account
       </summary>
 
-      <ul className='menu dropdown-content z-[1] w-40 rounded-box border border-base-content/50 bg-base-300 p-2 shadow-lg'>
+      <ul {...ulProps}>
         <li>
           <Link
             className='link-hover link inline-flex items-center gap-2'

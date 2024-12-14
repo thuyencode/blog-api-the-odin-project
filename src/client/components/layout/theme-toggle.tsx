@@ -1,7 +1,17 @@
 import { useDetailsElementInteraction } from '@/client/hooks'
 import { Icon } from '@iconify/react'
-import { useEffect, useState, type FunctionComponent } from 'react'
+import {
+  useEffect,
+  useState,
+  type ComponentProps,
+  type FunctionComponent
+} from 'react'
 import { themeChange } from 'theme-change'
+
+interface ThemeToggleProps {
+  detailsProps?: Omit<ComponentProps<'details'>, 'ref'>
+  ulProps?: ComponentProps<'ul'>
+}
 
 const TOGGLE_STATES = {
   default: { name: 'system', icon: 'mdi:computer', theme: '' },
@@ -9,7 +19,10 @@ const TOGGLE_STATES = {
   dark: { name: 'dark', icon: 'ph:moon-fill', theme: 'dark' }
 }
 
-const ThemeToggle: FunctionComponent = () => {
+const ThemeToggle: FunctionComponent<ThemeToggleProps> = ({
+  detailsProps,
+  ulProps
+}) => {
   const ref = useDetailsElementInteraction()
   const [toggleState, setToggleState] = useState(() => {
     // eslint-disable-next-line @typescript-eslint/no-unsafe-type-assertion -- This is fine
@@ -23,13 +36,13 @@ const ThemeToggle: FunctionComponent = () => {
   }, [])
 
   return (
-    <details className='dropdown dropdown-end' ref={ref}>
-      <summary className='gap-2 capitalize'>
+    <details {...detailsProps} ref={ref}>
+      <summary className='capitalize'>
         <Icon className='text-xl' icon={toggleState.icon} />
         <span>{toggleState.name}</span>
       </summary>
 
-      <ul className='menu dropdown-content z-[1] w-40 rounded-box border border-base-content/50 bg-base-300 p-2 shadow-lg'>
+      <ul {...ulProps}>
         {Object.values(TOGGLE_STATES).map((state) => (
           <li key={state.name}>
             <button
