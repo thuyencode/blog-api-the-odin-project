@@ -25,17 +25,20 @@ const AuthMenu: FunctionComponent<AuthMenuProps> = ({
         <li>
           <Link
             className='link-hover link inline-flex items-center gap-2'
-            to='/'
+            to='/log-in'
           >
             <Icon className='text-xl' icon='mdi:login' />
             Log in
           </Link>
         </li>
         <li>
-          <a className='link-hover link inline-flex items-center gap-2'>
+          <Link
+            className='link-hover link inline-flex items-center gap-2'
+            to='/register'
+          >
             <Icon className='text-xl' icon='mdi:register-outline' />
             Register
-          </a>
+          </Link>
         </li>
       </ul>
     </details>
