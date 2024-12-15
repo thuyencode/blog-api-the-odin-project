@@ -45,7 +45,7 @@ export const AuthForm: FunctionComponent<AuthFormProps> = ({ type }) => {
 
   return (
     <div
-      className='h-min w-full max-w-lg rounded-box border border-base-content/25 px-6 py-5 text-center'
+      className='h-min w-full max-w-lg rounded-box border-base-content/25 px-6 py-5 text-center sm:border'
       onSubmit={(event) => {
         void handleSubmit(onSubmit)(event)
       }}
