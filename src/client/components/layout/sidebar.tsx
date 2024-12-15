@@ -28,7 +28,7 @@ const Sidebar: FunctionComponent = () =>
         </label>
       </div>
 
-      <Search labelProps={{ className: 'input-md' }} />
+      <Search labelProps={{ className: 'input-sm' }} />
 
       <ul className='menu p-0'>
         <li>

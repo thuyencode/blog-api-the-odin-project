@@ -12,7 +12,7 @@ export const Layout = (): ReactElement => (
 
     <Sidebar />
 
-    <div className='flex flex-1'>
+    <div className='mx-2 flex flex-1 items-center justify-center'>
       <Outlet />
     </div>
 

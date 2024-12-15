@@ -1,1 +1,1 @@
-export * from './use-close-details-element'
+export * from './use-details-element-interaction'

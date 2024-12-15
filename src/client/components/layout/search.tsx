@@ -15,11 +15,11 @@ const Search: FunctionComponent<SearchProps> = ({
 
   return (
     <label
+      {...restLabelProps}
       className={cn(
         'input input-bordered flex items-center gap-2',
         labelClassName
       )}
-      {...restLabelProps}
     >
       <input type='text' className='grow' placeholder='Search' />
       <Icon className='text-xl' icon='mdi:search' />
