@@ -12,9 +12,12 @@ export const TextInputField = forwardRef<HTMLInputElement, TextInputFieldProps>(
   ({ name, icon, error, ...props }, ref) => (
     <div className='space-y-1.5'>
       <label
-        className={cn('input input-bordered flex items-center gap-2', {
-          'input-error': Boolean(error)
-        })}
+        className={cn(
+          'input input-bordered flex items-center gap-2 max-md:input-md',
+          {
+            'input-error': Boolean(error)
+          }
+        )}
         htmlFor={name}
       >
         <Icon className='text-lg' icon={icon} />
