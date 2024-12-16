@@ -1,6 +1,6 @@
 import { HttpError } from '@/shared/errors'
+import { httpStatusTextByCode } from '@/shared/utils'
 import { HttpStatusCode } from 'axios'
-import { httpStatusTextByCode } from '../utils'
 
 /**
  * Used to create objects representing HTTP status code `500 Internal Server Error`
