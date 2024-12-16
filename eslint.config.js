@@ -49,7 +49,9 @@ export default ts_eslint.config(
       '@typescript-eslint/no-unsafe-argument': 'off',
       '@typescript-eslint/strict-boolean-expressions': 'off',
       '@typescript-eslint/naming-convention': 'off',
-      '@typescript-eslint/no-unsafe-member-access': 'off'
+      '@typescript-eslint/no-unsafe-member-access': 'off',
+      '@typescript-eslint/only-throw-error': 'off',
+      complexity: 'off'
     }
   }
 )
