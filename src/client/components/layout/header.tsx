@@ -37,6 +37,9 @@ const Header = (): ReactElement => (
     <div className='navbar-end max-lg:hidden'>
       <ul className='menu menu-horizontal items-center'>
         <li>
+          <Link to='/secret'>Secret</Link>
+        </li>
+        <li>
           <ThemeToggle
             detailsProps={DEFAULT_DETAIL_PROPS}
             ulProps={DEFAULT_UL_PROPS}

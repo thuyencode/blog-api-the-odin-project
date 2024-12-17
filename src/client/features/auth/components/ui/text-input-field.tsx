@@ -2,6 +2,7 @@ import { cn } from '@/client/libs/tailwind'
 import { Icon, type IconifyIconProps } from '@iconify/react'
 import { forwardRef, type ComponentProps } from 'react'
 import type { FieldError } from 'react-hook-form'
+import { ErrorMessage } from './error-message'
 
 type TextInputFieldProps = Omit<ComponentProps<'input'>, 'className' | 'id'> &
   Pick<IconifyIconProps, 'icon'> & {
@@ -24,7 +25,7 @@ export const TextInputField = forwardRef<HTMLInputElement, TextInputFieldProps>(
         <input {...props} className='grow' name={name} id={name} ref={ref} />
       </label>
 
-      {error ? <div className='pb-2 text-error'>{error.message}!</div> : null}
+      <ErrorMessage className='pb-2 text-error' error={error} />
     </div>
   )
 )

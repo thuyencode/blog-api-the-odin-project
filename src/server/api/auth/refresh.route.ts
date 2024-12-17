@@ -18,7 +18,7 @@ refreshRoutes.get(
     const payload = verifyJwtToken<jwt.JwtPayload>(refreshToken)
 
     if (payload === null) {
-      throw new Unauthorized()
+      throw new Unauthorized('No refresh token provided')
     }
 
     const existedUser = await UserDB.findByUsername(payload.username)

@@ -1,10 +1,12 @@
+import type { HttpError } from '@/shared/errors'
 import type { AuthCredentialInput } from '@/shared/types/auth.type'
 import { AuthCredentialSchema } from '@/shared/validation/auth.schema'
 import { valibotResolver } from '@hookform/resolvers/valibot'
 import { Link } from '@tanstack/react-router'
+import { isAxiosError } from 'axios'
 import type { FunctionComponent } from 'react'
 import { useForm, type SubmitHandler } from 'react-hook-form'
-import { TextInputField } from './ui'
+import { ErrorMessage, TextInputField } from './ui'
 
 const FORM_TEXTS = {
   'log-in': {
@@ -25,22 +27,30 @@ const FORM_TEXTS = {
 
 interface AuthFormProps {
   type: keyof typeof FORM_TEXTS
+  authCallback: (input: AuthCredentialInput) => Promise<void>
 }
 
-export const AuthForm: FunctionComponent<AuthFormProps> = ({ type }) => {
+export const AuthForm: FunctionComponent<AuthFormProps> = ({
+  type,
+  authCallback
+}) => {
   const {
     register,
     handleSubmit,
+    setError,
     formState: { isSubmitting, errors }
   } = useForm<AuthCredentialInput>({
     resolver: valibotResolver(AuthCredentialSchema)
   })
 
   const onSubmit: SubmitHandler<AuthCredentialInput> = async (values) => {
-    console.log(values)
-    await new Promise((resolve) => {
-      setTimeout(resolve, 2000)
-    })
+    try {
+      await authCallback(values)
+    } catch (error) {
+      if (isAxiosError<HttpError>(error)) {
+        setError('root', { message: String(error.response?.data.cause) })
+      }
+    }
   }
 
   return (
@@ -58,6 +68,8 @@ export const AuthForm: FunctionComponent<AuthFormProps> = ({ type }) => {
       </div>
 
       <div className='divider' />
+
+      <ErrorMessage className='pb-6 text-error' error={errors.root} />
 
       <form className='space-y-2.5'>
         <TextInputField
