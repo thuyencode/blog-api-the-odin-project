@@ -2,7 +2,7 @@ import type { HttpError } from '@/shared/errors'
 import type { AuthCredentialInput } from '@/shared/types/auth.type'
 import { AuthCredentialSchema } from '@/shared/validation/auth.schema'
 import { valibotResolver } from '@hookform/resolvers/valibot'
-import { Link } from '@tanstack/react-router'
+import { Link, useSearch } from '@tanstack/react-router'
 import { isAxiosError } from 'axios'
 import type { FunctionComponent } from 'react'
 import { useForm, type SubmitHandler } from 'react-hook-form'
@@ -34,6 +34,7 @@ export const AuthForm: FunctionComponent<AuthFormProps> = ({
   type,
   authCallback
 }) => {
+  const { redirect } = useSearch({ strict: false })
   const {
     register,
     handleSubmit,
@@ -107,6 +108,7 @@ export const AuthForm: FunctionComponent<AuthFormProps> = ({
         <Link
           className='btn btn-link btn-block font-medium text-base-content no-underline hover:underline'
           to={FORM_TEXTS[type].second_choice_link}
+          search={{ redirect }}
         >
           {FORM_TEXTS[type].second_choice}
         </Link>
