@@ -7,6 +7,7 @@
     "dev": "nodemon -w src/server -x bun --env-file=.env.development.local src/server/main.ts",
     "start": "NODE_ENV=production bun --env-file=.env.production.local src/server/main.ts",
     "build": "vite build",
+    "build:visualize": "bunx vite-bundle-visualizer",
     "prisma:dev": "prisma migrate dev",
     "prisma:dev:migrate": "bun --env-file=.env.development.local prisma:dev --name",
     "prisma:generate": "prisma generate",
@@ -80,6 +81,7 @@
     "tailwindcss": "^3.4.16",
     "theme-change": "^2.5.0",
     "typescript-eslint": "^8.18.0",
-    "vite": "^5.0.2"
+    "vite": "^5.0.2",
+    "vite-bundle-visualizer": "^1.2.1"
   }
 }
