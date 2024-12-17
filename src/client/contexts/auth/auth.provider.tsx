@@ -1,30 +1,21 @@
 /* eslint-disable @eslint-react/no-unstable-context-value -- This is fine */
+import baseApi from '@/client/libs/api'
+import AuthApi from '@/client/libs/api/auth.api'
+import { router } from '@/client/libs/router'
 import type { HttpError } from '@/shared/errors'
 import type { AuthCredentialInput } from '@/shared/types/auth.type'
-import type { ReactNode } from '@tanstack/react-router'
-import { HttpStatusCode, type AxiosError } from 'axios'
+import { type AxiosError, HttpStatusCode } from 'axios'
 import {
-  createContext,
+  type ReactElement,
+  type ReactNode,
   useCallback,
   useEffect,
   useLayoutEffect,
   useMemo,
-  useState,
-  type ReactElement
+  useRef,
+  useState
 } from 'react'
-import baseApi from '../libs/api'
-import AuthApi from '../libs/api/auth.api'
-import { router } from '../libs/router'
-
-export interface IAuthContext {
-  accessToken: string | null
-  isAuthenticated: boolean
-  logIn: (input: AuthCredentialInput) => Promise<void>
-  register: (input: AuthCredentialInput) => Promise<void>
-  logOut: () => Promise<void>
-}
-
-export const AuthContext = createContext<IAuthContext | null>(null)
+import { AuthContext } from './auth.context'
 
 export const AuthProvider = ({
   children
@@ -32,19 +23,28 @@ export const AuthProvider = ({
   children: ReactNode
 }): ReactElement => {
   const [accessToken, setAccessToken] = useState<string | null>(null)
+  const abortControllerRef = useRef<AbortController | null>(null)
+
+  console.log('Re-rendered')
 
   useEffect(() => {
     void router.invalidate()
   }, [accessToken])
 
   useEffect(() => {
-    AuthApi.getRefresh()
+    abortControllerRef.current = new AbortController()
+
+    AuthApi.getRefresh(abortControllerRef.current.signal)
       .then(({ data }) => {
         setAccessToken(data.accessToken)
       })
       .catch(() => {
         setAccessToken(null)
       })
+
+    return () => {
+      abortControllerRef.current?.abort()
+    }
   }, [])
 
   useLayoutEffect(() => {

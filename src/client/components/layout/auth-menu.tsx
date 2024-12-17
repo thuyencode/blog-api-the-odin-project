@@ -1,4 +1,5 @@
-import { useAuth, useDetailsElementInteraction } from '@/client/hooks'
+import { useAuth } from '@/client/contexts/auth'
+import { useDetailsElementInteraction } from '@/client/hooks'
 import { Icon } from '@iconify/react'
 import { Link } from '@tanstack/react-router'
 import type { ComponentProps, FunctionComponent, ReactElement } from 'react'

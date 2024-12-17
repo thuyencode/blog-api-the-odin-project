@@ -1,4 +1,4 @@
-import { useAuth } from '@/client/hooks'
+import { useAuth } from '@/client/contexts/auth'
 import type { ReactElement } from 'react'
 import { AuthForm } from '../components'
 
